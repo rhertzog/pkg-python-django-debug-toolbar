@@ -1,0 +1,51 @@
+#!/usr/bin/make -f
+
+PKG	= python-django-debug-toolbar
+PREFIX	= $(CURDIR)/debian/$(PKG)
+
+get-orig-source:
+	set -ex; \
+		git clone git://github.com/robhudson/django-debug-toolbar.git $(PKG); \
+		DATE=`cd $(PKG) && git show --pretty=format:"%cD" HEAD | head -n1`; \
+		SUFFIX=`date -d "$$DATE" +%Y%m%d%H%M`; \
+		rm -rf $(PKG)/.git; \
+		tar cfz $(PKG)_0+git$${SUFFIX}.orig.tar.gz $(PKG); \
+		rm -rf $(PKG)
+
+clean:
+	dh $@
+
+build: build-stamp
+build-stamp:
+	python debian/setup.py build
+	touch $@
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean
+	dh_install
+	python debian/setup.py install --root=$(PREFIX)
+	dh_pysupport
+	# Don't embed jQuery
+	ln -sf /usr/share/javascript/jquery/jquery.js \
+		$(PREFIX)/usr/share/python-support/$(PKG)/debug_toolbar/media/jquery.js
+
+binary-indep: install
+	dh_testdir
+	dh_testroot
+	dh_link
+	dh_lintian
+	dh_installchangelogs
+	dh_installdocs README.rst
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch:
+
+binary: binary-indep
+.PHONY: build clean binary-indep binary-arch binary install get-orig-source

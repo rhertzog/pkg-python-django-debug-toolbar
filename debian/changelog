@@ -1,0 +1,5 @@
+python-django-debug-toolbar (0+git200810080709-1) unstable; urgency=low
+
+  * Initial release (Closes: #500391)
+
+ -- Chris Lamb <lamby@debian.org>  Sun, 12 Oct 2008 16:52:41 +0100

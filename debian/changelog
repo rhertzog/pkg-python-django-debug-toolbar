@@ -1,3 +1,9 @@
+python-django-debug-toolbar (0+git200812222307-1) unstable; urgency=low
+
+  * New upstream snapshot.
+
+ -- Chris Lamb <lamby@debian.org>  Mon, 29 Dec 2008 21:11:12 +0000
+
 python-django-debug-toolbar (0+git200810080709-1) unstable; urgency=low
 
   * Initial release (Closes: #500391)

@@ -26,14 +26,14 @@ install: build
 	dh_clean
 	dh_install
 	python debian/setup.py install --root=$(PREFIX)
-	dh_pysupport
 	# Don't embed jQuery
 	ln -sf /usr/share/javascript/jquery/jquery.js \
-		$(PREFIX)/usr/share/python-support/$(PKG)/debug_toolbar/media/jquery.js
+		$(PREFIX)/usr/lib/`pyversions -d`/site-packages/debug_toolbar/media/jquery.js
 
 binary-indep: install
 	dh_testdir
 	dh_testroot
+	dh_pysupport
 	dh_link
 	dh_lintian
 	dh_installchangelogs

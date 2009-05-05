@@ -28,7 +28,7 @@ install: build
 	python debian/setup.py install --root=$(PREFIX)
 	# Don't embed jQuery
 	ln -sf /usr/share/javascript/jquery/jquery.js \
-		$(PREFIX)/usr/lib/`pyversions -d`/site-packages/debug_toolbar/media/jquery.js
+		$(PREFIX)/usr/lib/`pyversions -d`/site-packages/debug_toolbar/media/debug_toolbar/jquery.js
 
 binary-indep: install
 	dh_testdir

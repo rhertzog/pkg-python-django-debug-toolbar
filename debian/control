@@ -2,7 +2,7 @@ Source: python-django-debug-toolbar
 Section: python
 Priority: optional
 Maintainer: Chris Lamb <lamby@debian.org>
-Build-Depends: debhelper (>= 7), python-support
+Build-Depends: debhelper (>= 7), python-support, python-setuptools
 Standards-Version: 3.8.0
 Vcs-Git: git://git.chris-lamb.co.uk/debian/pkg-python-django-debug-toolbar.git
 Vcs-Browser: http://git.chris-lamb.co.uk/?p=debian/pkg-python-django-debug-toolbar.git

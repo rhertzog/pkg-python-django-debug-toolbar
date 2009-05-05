@@ -1,4 +1,4 @@
-python-django-debug-toolbar (0+git200904211406-1) UNRELEASED; urgency=low
+python-django-debug-toolbar (0+git200904211406-1) unstable; urgency=low
 
   * New upstream release.
   * Add python-setuptools to Build-Depends. Previous upload did not move
@@ -9,7 +9,7 @@ python-django-debug-toolbar (0+git200904211406-1) UNRELEASED; urgency=low
     subdirectory.
   * Bump Standards-Version to 3.8.1.
 
- -- Chris Lamb <lamby@debian.org>  Tue, 05 May 2009 23:01:52 +0100
+ -- Chris Lamb <lamby@debian.org>  Tue, 05 May 2009 23:18:25 +0100
 
 python-django-debug-toolbar (0+git200901231854-2) unstable; urgency=low
 

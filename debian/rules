@@ -1,42 +1,11 @@
 #!/usr/bin/make -f
 
-PKG	= python-django-debug-toolbar
-PREFIX	= $(CURDIR)/debian/$(PKG)
-
-clean:
+%:
 	dh $@
 
-build: build-stamp
-build-stamp:
-	python debian/setup.py build
-	touch $@
-
-install: build
-	dh_testdir
-	dh_testroot
-	dh_clean
-	dh_install
-	python debian/setup.py install --root=$(PREFIX) --install-layout=deb
+override_dh_pysupport:
+	dh_pysupport
+	
 	# Don't embed jQuery
 	ln -sf /usr/share/javascript/jquery/jquery.js \
-		$(PREFIX)/usr/lib/`pyversions -d`/*-packages/debug_toolbar/media/debug_toolbar/jquery.js
-
-binary-indep: install
-	dh_testdir
-	dh_testroot
-	dh_pysupport
-	dh_link
-	dh_lintian
-	dh_installchangelogs
-	dh_installdocs README.rst
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary-arch:
-
-binary: binary-indep
-.PHONY: build clean binary-indep binary-arch binary install get-orig-source
+		debian/python-django-debug-toolbar/usr/share/pyshared/debug_toolbar/media/debug_toolbar/jquery.js

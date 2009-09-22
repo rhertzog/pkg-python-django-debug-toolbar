@@ -3,6 +3,7 @@ python-django-debug-toolbar (0.8.0-1) UNRELEASED; urgency=low
   * New upstream release.
   * Update debian/watch to use githubredir.
   * Drop get-orig-source; we have a real tarball now.
+  * Bump Standards-Version to 3.8.3.
 
  -- Chris Lamb <lamby@debian.org>  Tue, 22 Sep 2009 22:01:21 +0100
 

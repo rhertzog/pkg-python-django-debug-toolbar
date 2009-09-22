@@ -3,15 +3,6 @@
 PKG	= python-django-debug-toolbar
 PREFIX	= $(CURDIR)/debian/$(PKG)
 
-get-orig-source:
-	set -ex; \
-		git clone git://github.com/robhudson/django-debug-toolbar.git $(PKG); \
-		DATE=`cd $(PKG) && git show --pretty=format:"%cD" HEAD | head -n1`; \
-		SUFFIX=`date -d "$$DATE" +%Y%m%d%H%M`; \
-		rm -rf $(PKG)/.git; \
-		tar cfz $(PKG)_0+git$${SUFFIX}.orig.tar.gz $(PKG); \
-		rm -rf $(PKG)
-
 clean:
 	dh $@
 

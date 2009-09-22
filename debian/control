@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Chris Lamb <lamby@debian.org>
 Build-Depends: debhelper (>= 7), python-support, python-setuptools
 Standards-Version: 3.8.3
+Homepage: http://github.com/robhudson/django-debug-toolbar
 Vcs-Git: git://git.chris-lamb.co.uk/debian/pkg-python-django-debug-toolbar.git
 Vcs-Browser: http://git.chris-lamb.co.uk/?p=debian/pkg-python-django-debug-toolbar.git
 

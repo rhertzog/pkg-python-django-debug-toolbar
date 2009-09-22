@@ -1,4 +1,4 @@
-python-django-debug-toolbar (0.8.0-1) UNRELEASED; urgency=low
+python-django-debug-toolbar (0.8.0-1) unstable; urgency=low
 
   * New upstream release (Closes: #547733)
   * Move to minimal dh7 style.
@@ -7,7 +7,7 @@ python-django-debug-toolbar (0.8.0-1) UNRELEASED; urgency=low
   * Bump Standards-Version to 3.8.3.
   * Add homepage.
 
- -- Chris Lamb <lamby@debian.org>  Tue, 22 Sep 2009 22:01:21 +0100
+ -- Chris Lamb <lamby@debian.org>  Tue, 22 Sep 2009 22:17:40 +0100
 
 python-django-debug-toolbar (0+git200904211406-2) unstable; urgency=low
 

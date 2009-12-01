@@ -1,8 +1,8 @@
-python-django-debug-toolbar (0.8.1-1) UNRELEASED; urgency=low
+python-django-debug-toolbar (0.8.1-1) unstable; urgency=low
 
   * New upstream release.
 
- -- Chris Lamb <lamby@debian.org>  Tue, 01 Dec 2009 01:26:30 +0000
+ -- Chris Lamb <lamby@debian.org>  Tue, 01 Dec 2009 01:27:02 +0000
 
 python-django-debug-toolbar (0.8.0-1) unstable; urgency=low
 

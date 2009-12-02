@@ -1,3 +1,10 @@
+python-django-debug-toolbar (0.8.1+git200911272145-1) UNRELEASED; urgency=low
+
+  * New upstream snapshot.
+    - Fix incompatibility with Python 2.4 (Closes: #559138)
+
+ -- Chris Lamb <lamby@debian.org>  Wed, 02 Dec 2009 09:26:07 +0000
+
 python-django-debug-toolbar (0.8.1-1) unstable; urgency=low
 
   * New upstream release.

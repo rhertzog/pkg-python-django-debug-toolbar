@@ -17,5 +17,6 @@ override_dh_pysupport:
 	dh_pysupport
 	
 	# Don't embed jQuery
-	ln -sf /usr/share/javascript/jquery/jquery.js \
-		debian/python-django-debug-toolbar/usr/share/pyshared/debug_toolbar/media/debug_toolbar/jquery.js
+	for FILE in `find debian/*/usr -name jquery.js`; do\
+		ln -sf /usr/share/javascript/jquery/jquery.js $$FILE ; \
+	done

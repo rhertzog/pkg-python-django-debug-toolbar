@@ -1,6 +1,7 @@
 python-django-debug-toolbar (0.8.3-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * Move to dpkg '3.0 (quilt)' source format
 
  -- Chris Lamb <lamby@debian.org>  Thu, 20 May 2010 17:38:27 +0100
 

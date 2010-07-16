@@ -1,3 +1,10 @@
+python-django-debug-toolbar (0.8.3-2) UNRELEASED; urgency=low
+
+  * Don't install examples to /usr/share/pyshared/example. This is related to
+    but doesn't resolve #589170.
+
+ -- Chris Lamb <lamby@debian.org>  Fri, 16 Jul 2010 11:43:43 +0100
+
 python-django-debug-toolbar (0.8.3-1) unstable; urgency=low
 
   * New upstream release.

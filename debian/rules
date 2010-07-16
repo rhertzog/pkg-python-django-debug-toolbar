@@ -20,3 +20,5 @@ override_dh_pysupport:
 	for FILE in `find debian/*/usr -name jquery.js`; do\
 		ln -sf /usr/share/javascript/jquery/jquery.js $$FILE ; \
 	done
+	
+	rm -rf debian/*/usr/share/pyshared/example

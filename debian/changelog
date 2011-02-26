@@ -1,3 +1,9 @@
+python-django-debug-toolbar (0.8.3-3) UNRELEASED; urgency=low
+
+  * Update Vcs-{Git,Browser}.
+
+ -- Chris Lamb <lamby@debian.org>  Sat, 26 Feb 2011 17:42:23 +0000
+
 python-django-debug-toolbar (0.8.3-2) unstable; urgency=low
 
   * Don't install examples to /usr/share/pyshared/example. This is related to

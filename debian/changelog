@@ -1,6 +1,7 @@
 python-django-debug-toolbar (0.8.3-3) UNRELEASED; urgency=low
 
   * Update Vcs-{Git,Browser}.
+  * Bump Standards-Version to 3.9.1.
 
  -- Chris Lamb <lamby@debian.org>  Sat, 26 Feb 2011 17:42:23 +0000
 

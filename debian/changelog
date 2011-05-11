@@ -1,6 +1,7 @@
 python-django-debug-toolbar (0.8.5-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * Update debian/watch.
 
  -- Chris Lamb <lamby@debian.org>  Wed, 11 May 2011 14:36:30 +0100
 

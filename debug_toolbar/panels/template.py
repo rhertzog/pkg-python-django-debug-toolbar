@@ -3,8 +3,6 @@ from pprint import pformat
 
 from django import http
 from django.conf import settings
-from django.core.signals import request_started
-from django.dispatch import Signal
 from django.template.context import get_standard_processors
 from django.template.loader import render_to_string
 from django.test.signals import template_rendered
@@ -49,6 +47,32 @@ class TemplateDebugPanel(DebugPanel):
         template_rendered.connect(self._store_template_info)
 
     def _store_template_info(self, sender, **kwargs):
+        context_data = kwargs['context']
+
+        context_list = []
+        for context_layer in context_data.dicts:
+            temp_layer = {}
+            if hasattr(context_layer, 'items'):
+                for key, value in context_layer.items():
+                    # Replace any request elements - they have a large
+                    # unicode representation and the request data is
+                    # already made available from the Request Vars panel.
+                    if isinstance(value, http.HttpRequest):
+                        temp_layer[key] = '<<request>>'
+                    # Replace the debugging sql_queries element. The SQL
+                    # data is already made available from the SQL panel.
+                    elif key == 'sql_queries' and isinstance(value, list):
+                        temp_layer[key] = '<<sql_queries>>'
+                    # Replace LANGUAGES, which is available in i18n context processor
+                    elif key == 'LANGUAGES' and isinstance(value, tuple):
+                        temp_layer[key] = '<<languages>>'
+                    else:
+                        temp_layer[key] = value
+            try:
+                context_list.append(pformat(temp_layer))
+            except UnicodeEncodeError:
+                pass
+        kwargs['context'] = context_list
         self.templates.append(kwargs)
 
     def nav_title(self):
@@ -56,7 +80,7 @@ class TemplateDebugPanel(DebugPanel):
 
     def title(self):
         num_templates = len([t for t in self.templates
-            if not t['template'].name.startswith('debug_toolbar/')])
+            if not (t['template'].name and t['template'].name.startswith('debug_toolbar/'))])
         return _('Templates (%(num_templates)s rendered)') % {'num_templates': num_templates}
 
     def url(self):
@@ -78,7 +102,9 @@ class TemplateDebugPanel(DebugPanel):
             # Clean up some info about templates
             template = template_data.get('template', None)
             # Skip templates that we are generating through the debug toolbar.
-            if template.name.startswith('debug_toolbar/'):
+            if template.name and template.name.startswith('debug_toolbar/'):
+                continue
+            if not hasattr(template, 'origin'):
                 continue
             if template.origin and template.origin.name:
                 template.origin_name = template.origin.name
@@ -87,28 +113,7 @@ class TemplateDebugPanel(DebugPanel):
             info['template'] = template
             # Clean up context for better readability
             if getattr(settings, 'DEBUG_TOOLBAR_CONFIG', {}).get('SHOW_TEMPLATE_CONTEXT', True):
-                context_data = template_data.get('context', None)
-
-                context_list = []
-                for context_layer in context_data.dicts:
-                    if hasattr(context_layer, 'items'):
-                        for key, value in context_layer.items():
-                            # Replace any request elements - they have a large
-                            # unicode representation and the request data is
-                            # already made available from the Request Vars panel.
-                            if isinstance(value, http.HttpRequest):
-                                context_layer[key] = '<<request>>'
-                            # Replace the debugging sql_queries element. The SQL
-                            # data is already made available from the SQL panel.
-                            elif key == 'sql_queries' and isinstance(value, list):
-                                context_layer[key] = '<<sql_queries>>'
-                            # Replace LANGUAGES, which is available in i18n context processor
-                            elif key == 'LANGUAGES' and isinstance(value, tuple):
-                                context_layer[key] = '<<languages>>'
-                    try:
-                        context_list.append(pformat(context_layer))
-                    except UnicodeEncodeError:
-                        pass
+                context_list = template_data.get('context', [])
                 info['context'] = '\n'.join(context_list)
             template_context.append(info)
 

@@ -1,6 +1,7 @@
 python-django-debug-toolbar (0.8.5-2) UNRELEASED; urgency=low
 
   * Bump Standards-Version to 3.9.2.
+  * New Homepage.
 
  -- Chris Lamb <lamby@debian.org>  Sat, 18 Jun 2011 14:48:37 +0100
 

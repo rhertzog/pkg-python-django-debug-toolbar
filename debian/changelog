@@ -1,3 +1,9 @@
+python-django-debug-toolbar (1:0+git201107220111-96e46c6-2) UNRELEASED; urgency=low
+
+  * Drop get-orig-source target now we are using git-buildpackage
+
+ -- Chris Lamb <lamby@debian.org>  Sat, 30 Jul 2011 01:13:04 +0200
+
 python-django-debug-toolbar (1:0+git201107220111-96e46c6-1) unstable; urgency=low
 
   * New upstream snapshot.

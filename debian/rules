@@ -13,6 +13,10 @@ get-orig-source:
 %:
 	dh $@
 
+override_dh_auto_clean:
+	rm -f Makefile
+	dh_auto_clean
+
 override_dh_pysupport:
 	dh_pysupport
 	

@@ -4,6 +4,7 @@ python-django-debug-toolbar (1:0+git201107220111-96e46c6-1) UNRELEASED; urgency=
   * Bump Standards-Version to 3.9.2.
   * New Homepage.
   * Don't use upstream Makefile target.
+  * Don't embed jquery.cookie.js file.
 
  -- Chris Lamb <lamby@debian.org>  Sat, 30 Jul 2011 00:21:19 +0200
 

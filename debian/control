@@ -10,7 +10,7 @@ Vcs-Browser: https://github.com/lamby/pkg-python-django-debug-toolbar
 
 Package: python-django-debug-toolbar
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, python-django (>= 1.0), libjs-jquery
+Depends: ${misc:Depends}, ${python:Depends}, python-django (>= 1.0), libjs-jquery, libjs-jquery-cookie
 Recommends: python-pygments
 Description: Embedded debugging toolbar for Django projects
  The Django Debug Toolbar is a plug-in Django application that displays a set

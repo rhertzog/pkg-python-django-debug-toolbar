@@ -14,5 +14,3 @@ override_dh_python2:
 	for FILE in `find debian/*/usr -name jquery.cookie.js`; do\
 		ln -sf /usr/share/javascript/jquery-cookie/jquery.cookie.js $$FILE ; \
 	done
-	
-	#rm -rf debian/*/usr/share/pyshared/example

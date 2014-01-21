@@ -2,31 +2,36 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-debug-toolbar',
-    version='0.9.0-dev',
-    description='A configurable set of panels that display various debug information about the current request/response.',
+    version='1.0.1',
+    description='A configurable set of panels that display various debug '
+                'information about the current request/response.',
     long_description=open('README.rst').read(),
-    # Get more strings from http://www.python.org/pypi?:action=list_classifiers
     author='Rob Hudson',
     author_email='rob@cogit8.org',
     url='https://github.com/django-debug-toolbar/django-debug-toolbar',
-    download_url='https://github.com/django-debug-toolbar/django-debug-toolbar/downloads',
+    download_url='https://pypi.python.org/pypi/django-debug-toolbar',
     license='BSD',
-    packages=find_packages(exclude=('ez_setup', 'tests', 'example')),
-    tests_require=[
-        'django>=1.1,<1.4',
-        'dingus',
+    packages=find_packages(exclude=('tests', 'example')),
+    install_requires=[
+        'django>=1.4.2,<1.7',
+        'sqlparse',
     ],
-    test_suite='runtests.runtests',
     include_package_data=True,
-    zip_safe=False, # because we're including media that Django needs
+    zip_safe=False,                 # because we're including static files
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
 )

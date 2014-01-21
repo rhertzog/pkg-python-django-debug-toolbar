@@ -1,9 +1,30 @@
-# Make file to compress and join all JS files
-all: compress_js compress_css
+.PHONY: flake8 example test coverage translatable_strings update_translations
 
-compress_js:
-	java -jar ~/bin/yuicompressor.jar debug_toolbar/media/debug_toolbar/js/jquery.js > debug_toolbar/media/debug_toolbar/js/toolbar.min.js
-	java -jar ~/bin/yuicompressor.jar debug_toolbar/media/debug_toolbar/js/toolbar.js >> debug_toolbar/media/debug_toolbar/js/toolbar.min.js
+flake8:
+	flake8 debug_toolbar example tests
 
-compress_css:
-	java -jar ~/bin/yuicompressor.jar --type css debug_toolbar/media/debug_toolbar/css/toolbar.css > debug_toolbar/media/debug_toolbar/css/toolbar.min.css
+example:
+	DJANGO_SETTINGS_MODULE=example.settings \
+		django-admin.py runserver
+
+test:
+	DJANGO_SETTINGS_MODULE=tests.settings \
+		django-admin.py test tests
+
+test_selenium:
+	DJANGO_SELENIUM_TESTS=true DJANGO_SETTINGS_MODULE=tests.settings \
+		django-admin.py test tests
+
+coverage:
+	coverage erase
+	DJANGO_SETTINGS_MODULE=tests.settings \
+		coverage run --branch --source=debug_toolbar `which django-admin.py` test tests
+	coverage html
+
+translatable_strings:
+	cd debug_toolbar && django-admin.py makemessages -l en --no-obsolete
+	@echo "Please commit changes and run 'tx push -s' (or wait for Transifex to pick them)"
+
+update_translations:
+	tx pull -a --minimum-perc=10
+	cd debug_toolbar && django-admin.py compilemessages

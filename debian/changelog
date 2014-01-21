@@ -4,9 +4,11 @@ python-django-debug-toolbar (1:1.0.1-1) unstable; urgency=medium
   * Drop get-orig-source target now we are using git-buildpackage
 
   [ Raphaël Hertzog ]
+  * Non-maintainer upload.
   * New upstream release. Closes: #636897
   * Brings compatibility with Django 1.6. Closes: #726011
   * Switch from python-support to dh-python
+  * Updated Standards-Version to 3.9.5.
 
  -- Raphaël Hertzog <hertzog@debian.org>  Tue, 21 Jan 2014 08:55:43 +0100
 

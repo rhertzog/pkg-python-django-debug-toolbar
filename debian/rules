@@ -1,14 +1,10 @@
 #!/usr/bin/make -f
 
 %:
-	dh $@
+	dh $@ --with python2 --buildsystem=pybuild
 
-override_dh_auto_clean:
-	rm -f Makefile
-	dh_auto_clean
-
-override_dh_pysupport:
-	dh_pysupport
+override_dh_python2:
+	dh_python2
 	
 	# Don't embed jQuery
 	for FILE in `find debian/*/usr -name jquery.js`; do\
@@ -19,4 +15,4 @@ override_dh_pysupport:
 		ln -sf /usr/share/javascript/jquery-cookie/jquery.cookie.js $$FILE ; \
 	done
 	
-	rm -rf debian/*/usr/share/pyshared/example
+	#rm -rf debian/*/usr/share/pyshared/example

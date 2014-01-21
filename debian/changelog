@@ -1,10 +1,11 @@
-python-django-debug-toolbar (1:1.0.1-1) unstable; urgency=medium
+python-django-debug-toolbar (1:1.0.1-0+nmu1) unstable; urgency=medium
+
+  * Non-maintainer upload.
 
   [ Chris Lamb ]
   * Drop get-orig-source target now we are using git-buildpackage
 
   [ Raphaël Hertzog ]
-  * Non-maintainer upload.
   * New upstream release. Closes: #636897
   * Brings compatibility with Django 1.6. Closes: #726011
   * Switch from python-support to dh-python

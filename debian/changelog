@@ -9,6 +9,7 @@ python-django-debug-toolbar (1:1.0.1-1) unstable; urgency=medium
   * Brings compatibility with Django 1.6. Closes: #726011
   * Switch from python-support to dh-python
   * Updated Standards-Version to 3.9.5.
+  * Update watch file.
 
  -- Raphaël Hertzog <hertzog@debian.org>  Tue, 21 Jan 2014 08:55:43 +0100
 

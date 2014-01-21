@@ -1,47 +1,95 @@
-import os
-PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+"""Django settings for example project."""
 
-ADMIN_MEDIA_PREFIX = '/admin_media/'
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = 'example.db'
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+
+# Quick-start development settings - unsuitable for production
+
+SECRET_KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+
 DEBUG = True
+
+TEMPLATE_DEBUG = True
+
+
+# Application definition
+
 INSTALLED_APPS = (
-    'django.contrib.auth',
     'django.contrib.admin',
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
     'debug_toolbar',
 )
-INTERNAL_IPS = ('127.0.0.1',)
-MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
-MEDIA_URL = '/media'
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-)
+
 ROOT_URLCONF = 'example.urls'
-SECRET_KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcd'
-SITE_ID = 1
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
-    'django.core.context_processors.media',
-    'django.core.context_processors.request',
-)
-TEMPLATE_DEBUG = DEBUG
-TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, 'templates'))
-DEBUG_TOOLBAR_PANELS = (
-    'debug_toolbar.panels.version.VersionDebugPanel',
-    'debug_toolbar.panels.timer.TimerDebugPanel',
-    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
-    'debug_toolbar.panels.headers.HeaderDebugPanel',
-    'debug_toolbar.panels.profiling.ProfilingDebugPanel',
-    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
-    'debug_toolbar.panels.sql.SQLDebugPanel',
-    'debug_toolbar.panels.template.TemplateDebugPanel',
-    #'debug_toolbar.panels.cache.CacheDebugPanel',
-    'debug_toolbar.panels.signals.SignalDebugPanel',
-    'debug_toolbar.panels.logger.LoggingPanel',
-)
+
+STATIC_URL = '/static/'
+
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'example', 'templates')]
+
+WSGI_APPLICATION = 'example.wsgi.application'
+
+
+# Cache and database
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'example', 'db.sqlite3'),
+    }
+}
+
+# To use another database, set the DJANGO_DATABASE_ENGINE environment variable.
+if os.environ.get('DJANGO_DATABASE_ENGINE', '').lower() == 'postgresql':
+    # % su postgres
+    # % createuser debug_toolbar
+    # % createdb debug_toolbar -O debug_toolbar
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'debug_toolbar',
+            'USER': 'debug_toolbar',
+        }
+    }
+if os.environ.get('DJANGO_DATABASE_ENGINE', '').lower() == 'mysql':
+    # % mysql
+    # mysql> CREATE DATABASE debug_toolbar;
+    # mysql> GRANT ALL PRIVILEGES ON debug_toolbar.* TO 'debug_toolbar'@'localhost';
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'debug_toolbar',
+            'USER': 'debug_toolbar',
+        }
+    }
+
+
+# django-debug-toolbar
+
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+    'debug_toolbar.panels.profiling.ProfilingPanel',
+]
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'example', 'static')]
